@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24sp"
+    android:id="@+id/rowLayout"
+    android:background="@color/colorBackground"
+    >
+
+    <ImageView
+        android:id="@+id/bitmapimageView"
+        android:layout_width="match_parent"
+        android:layout_height="150sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_map" />
+
+    <TextView
+        android:id="@+id/distanceRecycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="-- km"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bitmapimageView"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <TextView
+        android:id="@+id/speedRecycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="--km/h"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/distanceRecycler"
+        app:layout_constraintEnd_toStartOf="@+id/timeRecycler"
+        app:layout_constraintStart_toEndOf="@+id/distanceRecycler"
+        app:layout_constraintTop_toTopOf="@+id/distanceRecycler" />
+
+    <TextView
+        android:id="@+id/timeRecycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01:00:00"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/speedRecycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/speedRecycler" />
+
+    <TextView
+        android:id="@+id/distancelabelRecycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Distance"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/distanceRecycler"
+        app:layout_constraintStart_toStartOf="@+id/distanceRecycler"
+        app:layout_constraintTop_toBottomOf="@+id/distanceRecycler" />
+
+    <TextView
+        android:id="@+id/speedlabelRecycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Avg.Speed"
+        app:layout_constraintBottom_toBottomOf="@+id/distancelabelRecycler"
+        app:layout_constraintEnd_toEndOf="@+id/speedRecycler"
+        app:layout_constraintStart_toStartOf="@+id/speedRecycler"
+        app:layout_constraintTop_toBottomOf="@+id/speedRecycler"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/durationlabelRecycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Duration"
+        app:layout_constraintBottom_toBottomOf="@+id/speedlabelRecycler"
+        app:layout_constraintEnd_toEndOf="@+id/timeRecycler"
+        app:layout_constraintStart_toStartOf="@+id/timeRecycler"
+        app:layout_constraintTop_toBottomOf="@+id/timeRecycler"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <!--    <com.google.android.gms.maps.MapView-->
+<!--        android:id="@+id/mapViewRecycler"-->
+<!--        android:layout_width="193dp"-->
+<!--        android:layout_height="193dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.219"-->
+<!--        xmlns:map="http://schemas.android.com/apk/res-auto"-->
+<!--        map:liteMode="true"-->
+<!--        map:cameraZoom="15"-->
+<!--        map:mapType="normal"-->
+<!--        />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
