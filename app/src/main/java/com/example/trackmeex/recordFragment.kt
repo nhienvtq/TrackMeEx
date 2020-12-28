@@ -1,17 +1,14 @@
 package com.example.trackmeex
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Bitmap
 import android.location.Location
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Chronometer
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -38,8 +35,6 @@ class recordFragment : Fragment()
     private var past_location: Location? = null
     private var current_location: Location? = null
 
-    private lateinit var timer: Chronometer
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,7 +56,7 @@ class recordFragment : Fragment()
 
         viewModel._timer.value = binding.chronometer
         viewModel._timer.value?.setOnChronometerTickListener {
-            viewModel._current_timerpoint = ((SystemClock.elapsedRealtime() - timer.base).toFloat())/1000
+            viewModel._current_timerpoint = ((SystemClock.elapsedRealtime() - viewModel._timer.value!!.base).toFloat())/1000
             binding.timdDisplaytextView.text = viewModel.formattimeDisplay(viewModel._current_timerpoint)
         }
     }
@@ -103,9 +98,6 @@ class recordFragment : Fragment()
         })
         viewModel._current_location.observe(viewLifecycleOwner, Observer {
             current_location = viewModel._current_location.value
-        })
-        viewModel._timer.observe(viewLifecycleOwner, Observer {
-            timer = viewModel._timer.value!!
         })
         viewModel._marker.observe(viewLifecycleOwner, Observer {
             viewModel._markerList.add(viewModel._marker.value!!)
