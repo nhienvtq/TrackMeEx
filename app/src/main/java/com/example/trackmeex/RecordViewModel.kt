@@ -96,7 +96,7 @@ class RecordViewModel: ViewModel(), OnMapReadyCallback
                                 _distance)
                             _speed_avg = _speed_avg.plus(_speed.value!!)
                             sizespeedList += 1
-                            //hide former markers but start point
+                            //hide former markers except start point
                             if (_past_timerpoint != 0f) _marker.value?.isVisible = false
                             //add marker
                             _marker.value = _map.value?.addMarker(markerOptions!!.title("You").icon(BitmapDescriptorFactory.defaultMarker(
@@ -142,19 +142,12 @@ class RecordViewModel: ViewModel(), OnMapReadyCallback
         val second: Int = ((seconds - hour*3600)- minute*60).toInt()
 
         val hourHH: String
-        if (hour < 10){
-            hourHH = "0" + hour.toString()
-        } else hourHH = hour.toString()
+        hourHH = if (hour < 10){"0$hour"} else hour.toString()
         val minuteMM: String
-        if (minute < 10){
-            minuteMM = "0" + minute.toString()
-        } else minuteMM = minute.toString()
+        minuteMM = if (minute < 10){"0$minute"} else minute.toString()
         val secondSS: String
-        if (second < 10){
-            secondSS = "0" + second.toString()
-        } else secondSS = second.toString()
-        val timeHHMMSS: String = hourHH + ":" + minuteMM + ":" + secondSS
-        return timeHHMMSS
+        secondSS = if (second < 10){"0$second"} else second.toString()
+        return hourHH + ":" + minuteMM + ":" + secondSS
     }
 
     var _distanceDB: String? = null
@@ -164,10 +157,10 @@ class RecordViewModel: ViewModel(), OnMapReadyCallback
         //prepare room data
         _distanceDB = (_distance_total.value).toString() + " km"
         _timeDB = formattimeDisplay(_current_timerpoint)
-        if (sizespeedList != 0){
-            _speedDB = (_speed_avg.div(sizespeedList)).toString() + " km/h"
+        _speedDB = if (sizespeedList != 0){
+            (_speed_avg.div(sizespeedList)).toString() + " km/h"
         } else {
-            _speedDB = "0.00 km/h"
+            "0.00 km/h"
         }
     }
 }

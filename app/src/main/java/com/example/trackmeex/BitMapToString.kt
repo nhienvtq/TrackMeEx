@@ -18,7 +18,6 @@ object ImageBitmapString {
     @TypeConverter
     fun StringToBitMap(encodedString: String): Bitmap {
         val encodeByte = Base64.decode(encodedString, Base64.DEFAULT)
-        val bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.size)
-        return bitmap
+        return BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.size)
     }
 }

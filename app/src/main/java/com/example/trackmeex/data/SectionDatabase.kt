@@ -21,7 +21,7 @@ abstract class SectionDatabase: RoomDatabase() {
                 return tempInstance
             }
             synchronized(this){
-                val instance = Room.databaseBuilder(context.applicationContext,
+                val instance: SectionDatabase = Room.databaseBuilder(context.applicationContext,
                     SectionDatabase::class.java, "sectionRV_database").build()
                 INSTANCE = instance
                 return instance

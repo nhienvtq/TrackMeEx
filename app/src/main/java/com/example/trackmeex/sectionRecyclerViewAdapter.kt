@@ -37,9 +37,9 @@ class sectionRecyclerViewAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(
     //construct and binding database and recycler views
     class sectionViewHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bind(section: Section) {
-            itemView.distanceRecycler.setText(section.distance)
-            itemView.speedRecycler.setText(section.speed)
-            itemView.timeRecycler.setText(section.time)
+            itemView.distanceRecycler.text = section.distance
+            itemView.speedRecycler.text = section.speed
+            itemView.timeRecycler.text = section.time
             itemView.bitmapimageView.setImageBitmap(StringToBitMap(section.image))
         }
     }

@@ -42,7 +42,7 @@ class recordFragment : Fragment()
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.getWindow()?.attributes?.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN
+        activity?.window?.attributes?.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN
 
         buttonsClickmanage()
         viewModelmanage()
@@ -110,13 +110,11 @@ class recordFragment : Fragment()
                 viewModel._timer.value?.start()
             } else {
                 //take snapshot - might miss
-                map?.snapshot(object : GoogleMap.SnapshotReadyCallback {
-                    override fun onSnapshotReady(snapshot: Bitmap?) {
-                        if (snapshot != null) {
-                            viewModel._Bitmapstring = ImageBitmapString.BitMapToString(snapshot)
-                        }
+                map?.snapshot { snapshot ->
+                    if (snapshot != null) {
+                        viewModel._Bitmapstring = ImageBitmapString.BitMapToString(snapshot)
                     }
-                })
+                }
                 binding.pauseimageView.visibility = View.INVISIBLE
                 binding.replayimageView.visibility = View.VISIBLE
                 binding.stopimageView.visibility = View.VISIBLE

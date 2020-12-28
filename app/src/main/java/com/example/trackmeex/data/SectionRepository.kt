@@ -9,9 +9,9 @@ class SectionRepository(private val sectionDAO: SectionDAO) {
         sectionDAO.addSection(section)
     }
 
-    suspend fun deleteSection(section: Section){
-        sectionDAO.deleteSection(section)
-    }
+//    suspend fun deleteSection(section: Section){
+//        sectionDAO.deleteSection(section)
+//    }
 
     suspend fun deleteAllSections(){
         sectionDAO.deleteAllSections()

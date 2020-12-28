@@ -24,11 +24,11 @@ class SectionViewModel(application: Application):AndroidViewModel(application) {
         }
     }
 
-    fun deleteSection(section: Section){
-        viewModelScope.launch(Dispatchers.IO){
-            repository.deleteSection(section)
-        }
-    }
+//    fun deleteSection(section: Section){
+//        viewModelScope.launch(Dispatchers.IO){
+//            repository.deleteSection(section)
+//        }
+//    }
 
     fun deleteAllSections(){
         viewModelScope.launch(Dispatchers.IO){
