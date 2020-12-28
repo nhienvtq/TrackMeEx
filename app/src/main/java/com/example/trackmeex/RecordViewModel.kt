@@ -87,9 +87,10 @@ class RecordViewModel: ViewModel(), OnMapReadyCallback
                         }
                         val past_latLng = LatLng( _past_location.value!!.latitude,  _past_location.value!!.longitude)
                         //distance - time - speed processing
-                        _distance = "%.2f".format((SphericalUtil.computeDistanceBetween(past_latLng,current_latLng)/1000)).toFloat()
-                        val time_interval = "%.2f".format(_current_timerpoint - _past_timerpoint).toFloat()
-                        _speed.value = "%.2f".format(_distance/(time_interval/3600)).toFloat()
+                        _distance = ("%.2f".format((SphericalUtil.computeDistanceBetween(past_latLng,current_latLng)/1000))).toFloat()
+                        val time_interval = ("%.2f".format(_current_timerpoint - _past_timerpoint)).toFloat()
+                        _speed.value = ("%.2f".format(_distance/(time_interval/3600))).toFloat()
+                        //detect location change and update
                         if ((past_latLng != current_latLng)){
                             _distance_total.value = _distance_total.value?.plus(
                                 _distance)

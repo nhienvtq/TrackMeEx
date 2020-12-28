@@ -2,7 +2,6 @@ package com.example.trackmeex
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import android.location.Location
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.LayoutInflater
@@ -32,8 +31,6 @@ class recordFragment : Fragment()
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var mapView: MapView? = null
     private var map: GoogleMap? = null
-    private var past_location: Location? = null
-    private var current_location: Location? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,12 +89,6 @@ class recordFragment : Fragment()
         })
         viewModel._map.observe(viewLifecycleOwner, Observer {
             map = viewModel._map.value
-        })
-        viewModel._past_location.observe(viewLifecycleOwner, Observer {
-            past_location = viewModel._past_location.value
-        })
-        viewModel._current_location.observe(viewLifecycleOwner, Observer {
-            current_location = viewModel._current_location.value
         })
         viewModel._marker.observe(viewLifecycleOwner, Observer {
             viewModel._markerList.add(viewModel._marker.value!!)
