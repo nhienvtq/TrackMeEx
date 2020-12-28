@@ -91,6 +91,9 @@ class RecordViewModel: ViewModel(), OnMapReadyCallback
                         val time_interval = "%.2f".format(_current_timerpoint - _past_timerpoint).toFloat()
                         _speed.value = "%.2f".format(_distance/(time_interval/3600)).toFloat()
                         if ((past_latLng != current_latLng)){
+                            _distance_total.value = _distance_total.value?.plus(
+                                _distance)
+                            _speed_avg = _speed_avg.plus(_speed.value!!)
                             sizespeedList += 1
                             //hide former markers but start point
                             if (_past_timerpoint != 0f) _marker.value?.isVisible = false

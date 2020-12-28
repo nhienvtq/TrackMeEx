@@ -44,7 +44,7 @@ class recordFragment : Fragment()
     ): View {
         // Binding inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_record, container, false)
-
+        
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -109,9 +109,6 @@ class recordFragment : Fragment()
         viewModel._marker.observe(viewLifecycleOwner, Observer {
             viewModel._markerList.add(viewModel._marker.value!!)
             viewModel.zoomfullCourse()
-            viewModel._distance_total.value = viewModel._distance_total.value?.plus(
-                viewModel._distance)
-            viewModel._speed_avg = viewModel._speed_avg.plus(viewModel._speed.value!!)
         })
         viewModel._distance_total.observe(viewLifecycleOwner, Observer {
             binding.distancttextView.text = "$it km"
