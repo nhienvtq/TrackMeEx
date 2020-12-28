@@ -1,10 +1,12 @@
 package com.example.trackmeex
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.location.Location
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +46,6 @@ class recordFragment : Fragment()
     ): View {
         // Binding inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_record, container, false)
-        
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,8 +59,8 @@ class recordFragment : Fragment()
         viewModel._mapView.value!!.getMapAsync(viewModel)
         viewModel._fusedLocationClient.value = LocationServices.getFusedLocationProviderClient(requireContext())
 
-        timer = binding.chronometer
-        timer.setOnChronometerTickListener {
+        viewModel._timer.value = binding.chronometer
+        viewModel._timer.value?.setOnChronometerTickListener {
             viewModel._current_timerpoint = ((SystemClock.elapsedRealtime() - timer.base).toFloat())/1000
             binding.timdDisplaytextView.text = viewModel.formattimeDisplay(viewModel._current_timerpoint)
         }
@@ -123,7 +124,7 @@ class recordFragment : Fragment()
                 binding.stopimageView.visibility = View.INVISIBLE
                 viewModel._marker.value?.isVisible = false
                 viewModel._timer.value?.base = SystemClock.elapsedRealtime() - 1000*(viewModel._current_timerpoint).toLong()
-                timer.start()
+                viewModel._timer.value?.start()
             } else {
                 //take snapshot - might miss
                 map?.snapshot(object : GoogleMap.SnapshotReadyCallback {
@@ -137,7 +138,7 @@ class recordFragment : Fragment()
                 binding.replayimageView.visibility = View.VISIBLE
                 binding.stopimageView.visibility = View.VISIBLE
                 viewModel._past_location.value = null
-                timer.stop()
+                viewModel._timer.value?.stop()
             }
         })
     }

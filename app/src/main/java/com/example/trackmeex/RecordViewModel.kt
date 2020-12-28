@@ -1,10 +1,16 @@
 package com.example.trackmeex
 
 import android.annotation.SuppressLint
+import android.app.IntentService
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Intent
 import android.graphics.Color
 import android.location.Location
+import android.os.Build
 import android.util.Log
 import android.widget.Chronometer
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.location.*
@@ -70,6 +76,7 @@ class RecordViewModel: ViewModel(), OnMapReadyCallback
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         //call back for location update
         locationCallback = object : LocationCallback() {
+
             @SuppressLint("SetTextI18n")
             override fun onLocationResult(locationResult: LocationResult) {
                 //get valid location
@@ -110,6 +117,7 @@ class RecordViewModel: ViewModel(), OnMapReadyCallback
                     }
                 }
             }
+
         }
     }
 
